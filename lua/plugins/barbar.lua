@@ -8,34 +8,38 @@ return {
           'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
         },
         init = function() vim.g.barbar_auto_setup = false end,
-        opts = {
-          -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-          -- animation = true,
-          -- insert_at_start = true,
-          -- …etc.
+        config = function()
+          local wk = require('which-key')
+          require("conform").setup {
+            -- Setup options for barbar.nvim
+            animation = true, -- Example option (add any other options you want here)
 
-          -- Add sidebar_filetypes here:
-          sidebar_filetypes = {
-            NvimTree = true,
-            -- Example for undotree:
-            undotree = {
-              text = 'undotree',
-              align = 'center', -- optionally specify alignment
+            -- Add sidebar_filetypes configuration here:
+            sidebar_filetypes = {
+              NvimTree = true,
+              undotree = {
+                text = 'undotree',
+                align = 'center',
+              },
+              ['neo-tree'] = {
+                text = 'File Explorer',
+                align = 'left',
+              },
+              Outline = {
+                event = 'BufWinLeave',
+                text = 'symbols-outline',
+                align = 'right',
+              },
             },
-            -- Example for neo-tree:
-            ['neo-tree'] = {
-              text = 'File Explorer', -- optional: text displayed in offset
-              align = 'left',
-            },
-            -- Example for Outline:
-            Outline = {
-              event = 'BufWinLeave',
-              text = 'symbols-outline',
-              align = 'right',
-            },
-          },
+          }
+
+        wk.add({
+        {
+          { "<Leader>b", group = "Buffers" },
+          { "<Leader>bn", "<cmd>BufferMoveNext<CR>", desc = "Move next" },
         },
-        version = '^1.0.0', -- optional: only update when a new 1.x version is released
+        })
+        end,
       },
     }
 }
