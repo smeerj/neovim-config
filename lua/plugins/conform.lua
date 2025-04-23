@@ -11,6 +11,13 @@ return {
       -- Conform will run the first available formatter
       javascript = { "prettierd", "prettier", stop_after_first = true },
     },
+    default_format_opts = {
+      lsp_format = "fallback",
+    },
+    format_on_save = {
+      lsp_format = "fallback",
+      timeout_ms = 500,
+    },
   })
   end,
 }

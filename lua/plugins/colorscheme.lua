@@ -1,5 +1,10 @@
 return {
- { "ellisonleao/gruvbox.nvim", priority = 1000 , config = function()
-    vim.cmd("colorscheme gruvbox")
-  end, opts = ...},
+	"projekt0n/github-nvim-theme",
+	config = function()
+		require("github-theme").setup({
+			-- ...
+		})
+
+		vim.cmd("colorscheme github_dark_high_contrast")
+	end,
 }
